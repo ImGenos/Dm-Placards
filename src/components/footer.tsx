@@ -1,8 +1,5 @@
-import Facebook from "../icons/facebook.tsx";
 import Instagram from "../icons/instagram.tsx";
-import LinkedIn from "../icons/linkedin.tsx";
 import Logo from "../icons/logo.tsx";
-import Twitter from "../icons/twitter.tsx";
 
 const Footer = () => {
   return (
@@ -16,15 +13,6 @@ const Footer = () => {
           <p className="tracking-tight text-base lg:text-[22px] lg:leading-[33px] font-jost text-text-gray pt-[18px] pb-[33px] max-w-[400px]">
             Réalisation sur mesure : Placard, dressing, bibliothèque, sous-pente, commode, bureau, structure de lit, chevet, dessous d’escalier, portes coulissantes, séparation de pièces ...          </p>
           <div className="flex gap-5 md:gap-[54px]">
-            <a href="/">
-              <Facebook />
-            </a>
-            <a href="/">
-              <Twitter />
-            </a>
-            <a href="/">
-              <LinkedIn />
-            </a>
             <a href="/">
               <Instagram />
             </a>
