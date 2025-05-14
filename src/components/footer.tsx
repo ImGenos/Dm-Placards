@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="mb-4">
               <Logo />
             </div>
-            <p className="text-text-gray-200 font-jost">
+            <p className="text-primary-200 font-jost">
               Réalisation sur mesure : Placard, dressing, bibliothèque, sous-pente, 
               commode, bureau, structure de lit, chevet, dessous d'escalier, 
               portes coulissantes, séparation de pièces ...
@@ -30,17 +30,17 @@ const Footer = () => {
             <h3 className="text-primary-200 font-dm text-2xl">Pages</h3>
             <ul className="space-y-4">
               <li>
-                <a href="/about" className="text-text-gray-200 hover:text-primary-100 transition-all">
+                <a href="/about" className="text-primary-200 hover:text-primary-100 transition-all">
                   À Propos
                 </a>
               </li>
               <li>
-                <a href="/services" className="text-text-gray-200 hover:text-primary-100 transition-all">
+                <a href="/services" className="text-primary-200 hover:text-primary-100 transition-all">
                   Services
                 </a>
               </li>
               <li>
-                <a href="/contact" className="text-text-gray-200 hover:text-primary-100 transition-all">
+                <a href="/contact" className="text-primary-200 hover:text-primary-100 transition-all">
                   Nous Contacter
                 </a>
               </li>
@@ -51,10 +51,10 @@ const Footer = () => {
           <div className="flex flex-col space-y-6">
             <h3 className="text-primary-200 font-dm text-2xl">Services</h3>
             <ul className="space-y-4">
-              <li className="text-text-gray-200">Dressings</li>
-              <li className="text-text-gray-200">Sous pente</li>
-              <li className="text-text-gray-200">Sous escalier</li>
-              <li className="text-text-gray-200">Chambre</li>
+              <li className="text-primary-200">Dressings</li>
+              <li className="text-primary-200">Sous pente</li>
+              <li className="text-primary-200">Sous escalier</li>
+              <li className="text-primary-200">Chambre</li>
             </ul>
           </div>
 
@@ -62,17 +62,17 @@ const Footer = () => {
           <div className="flex flex-col space-y-6">
             <h3 className="text-primary-200 font-dm text-2xl">Contact</h3>
             <ul className="space-y-4">
-              <li className="text-text-gray-200">
+              <li className="text-primary-200">
                 15 Rue André Citroën lot 15, 78140 Vélizy-Villacoublay 
                 <br />SIRET - 421 678 822
               </li>
               <li>
-                <a href="mailto:dm.placards@wanadoo.fr" className="text-text-gray-200 hover:text-primary-100 transition-all">
+                <a href="mailto:dm.placards@wanadoo.fr" className="text-primary-200 hover:text-primary-100 transition-all">
                 dm.placards@wanadoo.fr
                 </a>
               </li>
               <li>
-                <a href="tel:0134653570" className="text-text-gray-200 hover:text-primary-100 transition-all">
+                <a href="tel:0134653570" className="text-primary-200 hover:text-primary-100 transition-all">
                 01 34 65 35 70
                 </a>
               </li>

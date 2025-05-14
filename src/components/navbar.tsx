@@ -1,47 +1,53 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../icons/logo.tsx"; // Your Logo component
+import Logo from "../icons/logo.tsx";
 import useMediaQuery from "../utils/useMediaQuery.ts";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [toggled, setToggled] = useState(false);
-  const matches = useMediaQuery("(min-width: 1280px)"); // XL breakpoint
+  const [scrolled, setScrolled] = useState(false);
+  const matches = useMediaQuery("(min-width: 1280px)");
 
-  const linkStyle = "text-xl leading-6 font-jost text-primary-200 hover:text-primary-100 transition-all";
+  // Add scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
 
-  // --- Configuration for Heights ---
-  const logoActualHeightRem = 10; // For h-40 (160px). Your <Logo /> should render at this height.
-  const navLinksBarHeightRem = 4; // For h-16 (64px). This is the new height for the links bar.
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  // Calculate how much the logo overhangs the nav links bar on top and bottom
-  const logoOverhangRem = (logoActualHeightRem - navLinksBarHeightRem) / 2; // e.g., (10 - 4) / 2 = 3rem
+  const linkStyle = "text-xl leading-6 font-jost text-primary-200 hover:text-accent transition-all relative group";
+  const activeLinkStyle = "after:content-[''] after:absolute after:h-[2px] after:w-0 after:left-0 after:bottom-[-4px] after:bg-accent after:transition-all group-hover:after:w-full";
 
-  // This padding will be applied to the top and bottom of the main content wrapper
-  const headerVerticalPaddingStyleVal = `${logoOverhangRem}rem`; // e.g., "3rem"
+  // Configuration for Heights
+  const logoActualHeightRem = 10;
+  const navLinksBarHeightRem = 4;
+  const logoOverhangRem = (logoActualHeightRem - navLinksBarHeightRem) / 2;
+  const headerVerticalPaddingStyleVal = `${logoOverhangRem}rem`;
+  const logoHeightClass = `h-[${logoActualHeightRem}rem]`;
+  const navLinksHeightClass = `h-[${navLinksBarHeightRem}rem]`;
 
-  // --- Tailwind Class Strings for Heights ---
-  const logoHeightClass = `h-[${logoActualHeightRem}rem]`; // e.g., "h-[10rem]"
-  const navLinksHeightClass = `h-[${navLinksBarHeightRem}rem]`; // e.g., "h-[4rem]"
-
-  // Optional: Prevent body scroll when mobile menu is open
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (toggled && !matches) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-    return () => { // Cleanup on component unmount
+    return () => {
       document.body.style.overflow = "auto";
     };
   }, [toggled, matches]);
 
   return (
-    // 1. Outermost div for the full-width background.
-    <div className="bg-background w-full">
-      {/* 2. Centered, max-width container. This is the main positioning context.
-             - 'relative' makes it the anchor for the absolutely positioned logo.
-             - 'paddingTop' makes space for the top part of the oversized logo.
-             - 'paddingBottom' makes space for the bottom part of the oversized logo. */}
+    <div className={`w-full sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-md" : "bg-background"}`}>
       <div
         className="max-w-[1200px] m-auto w-full relative"
         style={{
@@ -49,29 +55,20 @@ const Navbar = () => {
           paddingBottom: headerVerticalPaddingStyleVal,
         }}
       >
-        {/* 3. Links Bar.
-             Sits within the content area of its parent (after parent's paddingTop).
-             Has its own defined (shorter) height.
-             'z-10' keeps it above the parent's background but below the logo. */}
         <div
-          className={`w-full flex justify-between items-center px-12 xl:px-0 relative z-10 ${navLinksHeightClass}`}
+          className={`w-full flex justify-between items-center px-6 md:px-12 xl:px-0 relative z-10 ${navLinksHeightClass}`}
         >
-          {/* Navigation Items Container (Desktop Nav or Mobile Hamburger).
-               'ml-auto' pushes this block to the right.
-               'flex items-center h-full' ensures vertical centering of its content
-               within this 'navLinksHeightClass' bar. */}
           <div className="ml-auto flex items-center h-full">
-            {matches && ( // Desktop Navigation
-              // Added 'items-center' here to vertically center the nav links
+            {matches && (
               <nav className="flex flex-row gap-8 items-center">
-                <a href="/" className={linkStyle}>Accueil</a>
-                <a href="/about" className={linkStyle}>À Propos</a>
-                <a href="/services" className={linkStyle}>Services</a>
-                <a href="/contact" className={linkStyle}>Nous Contacter</a>
+                <a href="/" className={`${linkStyle} ${activeLinkStyle}`}>Accueil</a>
+                <a href="/about" className={`${linkStyle} ${activeLinkStyle}`}>À Propos</a>
+                <a href="/services" className={`${linkStyle} ${activeLinkStyle}`}>Services</a>
+                <a href="/contact" className={`${linkStyle} ${activeLinkStyle} btn btn-outline rounded-full py-2 px-6`}>Nous Contacter</a>
               </nav>
             )}
 
-            {!matches && ( // Mobile Hamburger Toggle
+            {!matches && (
               <div
                 onClick={() => setToggled(!toggled)}
                 className="space-y-1 cursor-pointer z-30"
@@ -99,36 +96,47 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* 4. Absolutely Positioned Logo.
-             - Positioned relative to the `max-w-[1200px]` div.
-             - 'top: 0px' places its top edge at the beginning of the parent's paddingTop area.
-             - 'left: 0px' places its left edge at the beginning of the parent's content area.
-             - 'px-12 xl:px-0' on this div aligns the logo's content horizontally with the links bar's content.
-             - 'z-20' places it above the links bar. */}
         <div
-          className="absolute left-0 z-20 px-12 xl:px-0" // Horizontal padding to align content
-          style={{ top: '0px' }} // Position at the top of the padded parent container
+          className="absolute left-0 z-20 px-6 md:px-12 xl:px-0"
+          style={{ top: '0px' }}
         >
           <a href="/" aria-label="Go to homepage" className={`flex items-center ${logoHeightClass}`}>
-            {/* Your <Logo /> component should render the logo at its full desired height (e.g., 160px) */}
             <Logo />
           </a>
         </div>
 
-        {/* Mobile Menu Overlay - Fixed position, higher z-index */}
+        {/* Mobile Menu with improved transitions */}
         {toggled && !matches && (
-          <motion.nav
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: "0%" }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "tween", duration: 0.3 }}
-            className="flex flex-col fixed top-0 right-0 h-screen bg-background w-[75%] md:w-[90%] text-primary-200 gap-6 items-center justify-center z-50 shadow-lg"
-          >
-            <a href="/" className={linkStyle} onClick={() => setToggled(false)}>Accueil</a>
-            <a href="/about" className={linkStyle} onClick={() => setToggled(false)}>À Propos</a>
-            <a href="/services" className={linkStyle} onClick={() => setToggled(false)}>Services</a>
-            <a href="/contact" className={linkStyle} onClick={() => setToggled(false)}>Nous Contacter</a>
-          </motion.nav>
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-primary-200 bg-opacity-30 backdrop-blur-sm z-40"
+              onClick={() => setToggled(false)}
+            />
+            
+            {/* Menu panel */}
+            <motion.nav
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: "0%" }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="flex flex-col fixed top-0 right-0 h-screen bg-background w-[75%] md:w-[50%] text-primary-200 gap-6 items-center justify-center z-50 shadow-lg"
+            >
+              <div className="flex flex-col gap-6 items-center">
+                <a href="/" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Accueil</a>
+                <a href="/about" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>À Propos</a>
+                <a href="/services" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Services</a>
+                <a href="/contact" 
+                   className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl" 
+                   onClick={() => setToggled(false)}>
+                  Nous Contacter
+                </a>
+              </div>
+            </motion.nav>
+          </>
         )}
       </div>
     </div>

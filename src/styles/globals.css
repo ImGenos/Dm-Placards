@@ -1,8 +1,9 @@
-/* globals.css - Place this in your src/styles/ directory */
+/* globals.css - Enhanced styles for visual appeal */
 
-/* Base styles - compatible with your existing Tailwind setup */
+/* Base styles */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Accounts for fixed header */
 }
 
 body {
@@ -11,14 +12,40 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.5;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* Section title styles */
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Serif Display', serif;
+  line-height: 1.2;
+}
+
+/* Section title styles with visual elements */
 .section-title {
   font-family: 'DM Serif Display', serif;
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #292F36;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #CDA274;
+  margin-top: 0.75rem;
+}
+
+.section-title.centered {
+  text-align: center;
+}
+
+.section-title.centered::after {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 768px) {
@@ -27,17 +54,33 @@ body {
   }
 }
 
-/* Card styles */
+/* Enhanced card styles */
 .card {
   background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 1.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Image styles */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Image styles with subtle effects */
 .img-rounded {
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.img-effect {
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.img-effect:hover {
+  transform: scale(1.03);
 }
 
 /* Fix for background images */
@@ -49,17 +92,202 @@ body {
   background-position: center;
 }
 
-/* Transitions */
+/* Enhanced transitions */
 .transition-all {
   transition: all 0.3s ease;
 }
 
-/* Hover effects for navigation */
-.hover-accent:hover {
-  color: #CDA274;
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover::after {
+  transform: translateX(0);
+}
+
+.btn-primary {
+  background-color: #CDA274;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #bb9569;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1px solid #CDA274;
+  color: #292F36;
+}
+
+.btn-outline:hover {
+  background-color: #CDA274;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* Staggered animation for grid items */
+.stagger-grid > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-grid.visible > *:nth-child(1) { animation: slideUp 0.5s ease forwards 0.1s; }
+.stagger-grid.visible > *:nth-child(2) { animation: slideUp 0.5s ease forwards 0.2s; }
+.stagger-grid.visible > *:nth-child(3) { animation: slideUp 0.5s ease forwards 0.3s; }
+.stagger-grid.visible > *:nth-child(4) { animation: slideUp 0.5s ease forwards 0.4s; }
+.stagger-grid.visible > *:nth-child(5) { animation: slideUp 0.5s ease forwards 0.5s; }
+.stagger-grid.visible > *:nth-child(6) { animation: slideUp 0.5s ease forwards 0.6s; }
+
+/* Decorative elements */
+.decorative-line {
+  width: 60px;
+  height: 2px;
+  background-color: #CDA274;
+  margin: 1rem 0;
+}
+
+.decorative-line.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Enhanced section spacing */
+.section {
+  padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 7rem 0;
+  }
+}
+
+/* Container with better responsive padding */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 /* Footer reset */
 footer {
   margin-top: 0;
+}
+
+/* Modal/dialog styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 90%;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.visible .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Visual feedback for active links */
+.nav-link.active {
+  color: #CDA274;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #CDA274;
 }
