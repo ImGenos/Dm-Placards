@@ -7,7 +7,7 @@ const ContactInfo = () => {
     <div className="col-span-1 bg-primary-300 rounded-[30px] px-8 py-[76px] flex flex-col gap-[30px] w-full">
       <h5 className="flex flex-col xl:flex-row gap-4 items-center text-xl font-jost tracking-tight">
         {" "}
-        <Mail /> Dm-placards@wanado.fr
+        <Mail /> dm.placards@wanadoo.fr
       </h5>
       <h5 className="flex flex-col xl:flex-row gap-4 items-center text-xl font-jost tracking-tight">
         {" "}
