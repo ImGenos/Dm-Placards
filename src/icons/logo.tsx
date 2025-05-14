@@ -2,9 +2,9 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <div className="h-24 flex items-center">
+    <div className="h-40 flex items-center">
       <img 
-        src="/logo.jpg" 
+        src="/logo.png" 
         alt="DM Placards Logo" 
         className="h-full w-auto"
       />

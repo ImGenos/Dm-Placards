@@ -15,10 +15,11 @@ module.exports = {
       },
       fontFamily: {
         dm: ["DM Serif Display", "serif"],
-        jost: ["Jost", "sans-serif"], // Ensure fonts with spaces have " " surrounding it.
+        jost: ["Jost", "sans-serif"], 
+        serif: ["DM Serif Display", "serif"], // Alternative reference
       },
       colors: {
-        // Configure your color palette here
+        // Keeping your original color palette
         primary: {
           100: "#CDA274",
           200: "#292F36",
@@ -32,6 +33,16 @@ module.exports = {
           "gray-200": "#4D5053",
           "gray-300": "#E5E5E5",
         },
+        // Adding new colors
+        background: "#F9F5F0", // Warm background color
+        accent: "#CDA274",     // Same as primary.100 for easier reference
+      },
+      boxShadow: {
+        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+      },
+      fontSize: {
+        // Additional font sizes for more precise control
+        '2xs': '.625rem',
       },
     },
   },
@@ -51,6 +62,44 @@ module.exports = {
           display: "flex",
           "justify-content": "space-between",
           "align-items": "center",
+        },
+        // Additional utility classes
+        ".container": {
+          maxWidth: "1200px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
+        },
+        ".section": {
+          paddingTop: "4rem",
+          paddingBottom: "4rem",
+        },
+        ".btn": {
+          display: "inline-block",
+          padding: "0.75rem 2rem",
+          borderRadius: "0.25rem",
+          fontWeight: "500",
+          fontSize: "1rem",
+          textAlign: "center",
+          transition: "all 0.3s ease",
+          textDecoration: "none",
+          cursor: "pointer",
+        },
+        ".btn-primary": {
+          backgroundColor: "#CDA274",
+          color: "white",
+        },
+        ".btn-primary:hover": {
+          backgroundColor: "#bb9569",
+        },
+        ".btn-outline": {
+          border: "1px solid #CDA274",
+          color: "#292F36",
+        },
+        ".btn-outline:hover": {
+          backgroundColor: "#CDA274",
+          color: "white",
         },
       });
     }),

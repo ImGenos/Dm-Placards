@@ -1,114 +1,65 @@
-/* Base styles */
+/* globals.css - Place this in your src/styles/ directory */
+
+/* Base styles - compatible with your existing Tailwind setup */
 html {
-    font-family: 'Jost', sans-serif;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    background-color: #F9F5F0;
-    color: #292F36;
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-  }
-  
-  /* Container for content */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  
-  /* Accent colors from your logo and branding */
-  .text-accent {
-    color: #CDA274;
-  }
-  
-  .bg-accent {
-    background-color: #CDA274; 
-  }
-  
-  /* Improved button styles */
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 0.25rem;
-    font-weight: 500;
-    font-size: 1rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .btn-primary {
-    background-color: #CDA274;
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    background-color: #bb9569;
-  }
-  
-  .btn-outline {
-    border: 1px solid #CDA274;
-    color: #292F36;
-  }
-  
-  .btn-outline:hover {
-    background-color: #CDA274;
-    color: white;
-  }
-  
-  /* Section spacing */
-  .section {
-    padding: 4rem 0;
-  }
-  
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F9F5F0;
+  color: #292F36;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* Section title styles */
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #292F36;
+}
+
+@media (min-width: 768px) {
   .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #292F36;
+    font-size: 3.5rem;
   }
-  
-  @media (min-width: 768px) {
-    .section-title {
-      font-size: 3.5rem;
-    }
-  }
-  
-  /* Card styles */
-  .card {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    padding: 1.5rem;
-  }
-  
-  /* Image styles */
-  .img-rounded {
-    border-radius: 0.5rem;
-  }
-  
-  /* Text styles */
-  .text-lg {
-    font-size: 1.125rem;
-  }
-  
-  .text-xl {
-    font-size: 1.25rem;
-  }
-  
-  .text-2xl {
-    font-size: 1.5rem;
-  }
-  
-  .font-serif {
-    font-family: 'DM Serif Display', serif;
-  }
-  
-  /* Footer reset */
-  footer {
-    margin-top: 0;
-  }
+}
+
+/* Card styles */
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+/* Image styles */
+.img-rounded {
+  border-radius: 0.5rem;
+}
+
+/* Fix for background images */
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
+}
+
+/* Transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Hover effects for navigation */
+.hover-accent:hover {
+  color: #CDA274;
+}
+
+/* Footer reset */
+footer {
+  margin-top: 0;
+}
