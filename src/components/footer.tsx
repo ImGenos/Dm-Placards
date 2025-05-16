@@ -1,24 +1,24 @@
 import React from "react";
-import { motion } from "framer-motion"; // Temporarily commented out
+import { motion } from "framer-motion";
 import Logo from "../icons/logo.tsx";
 import Instagram from "../icons/instagram.tsx";
 
 const Footer = () => {
-  // Animation variants (temporarily unused)
-  // const containerVariants = {
-  //   hidden: { opacity: 0 },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       staggerChildren: 0.1,
-  //     },
-  //   },
-  // };
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-  // const itemVariants = {
-  //   hidden: { y: 20, opacity: 0 },
-  //   visible: { y: 0, opacity: 1 },
-  // };
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
 
   return (
     <footer className="bg-primary-300 pt-20 pb-16 relative overflow-hidden">
@@ -29,17 +29,15 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-        {/* Replaced motion.div with div */}
-        <div
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10"
-          // initial="hidden" // Temporarily removed
-          // whileInView="visible" // Temporarily removed
-          // viewport={{ once: true, margin: "-100px" }} // Temporarily removed
-          // variants={containerVariants} // Temporarily removed
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
         >
           {/* Column 1 - Logo and Description */}
-          {/* Replaced motion.div with div */}
-          <div className="flex flex-col space-y-6">
+          <motion.div className="flex flex-col space-y-6" variants={itemVariants}>
             <div className="mb-4 transform hover:scale-105 transition-transform">
               <Logo />
             </div>
@@ -59,11 +57,10 @@ const Footer = () => {
                 <Instagram />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Column 2 - Pages */}
-          {/* Replaced motion.div with div */}
-          <div className="flex flex-col space-y-6">
+          <motion.div className="flex flex-col space-y-6" variants={itemVariants}>
             <h3 className="text-primary-200 font-dm text-2xl relative after:content-[''] after:block after:w-12 after:h-0.5 after:bg-primary-100 after:mt-2">
               Pages
             </h3>
@@ -87,11 +84,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 3 - Services */}
-          {/* Replaced motion.div with div */}
-          <div className="flex flex-col space-y-6">
+          <motion.div className="flex flex-col space-y-6" variants={itemVariants}>
             <h3 className="text-primary-200 font-dm text-2xl relative after:content-[''] after:block after:w-12 after:h-0.5 after:bg-primary-100 after:mt-2">
               Services
             </h3>
@@ -108,11 +104,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 4 - Contact */}
-          {/* Replaced motion.div with div */}
-          <div className="flex flex-col space-y-6">
+          <motion.div className="flex flex-col space-y-6" variants={itemVariants}>
             <h3 className="text-primary-200 font-dm text-2xl relative after:content-[''] after:block after:w-12 after:h-0.5 after:bg-primary-100 after:mt-2">
               Contact
             </h3>
@@ -162,8 +157,8 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Call to action banner */}
