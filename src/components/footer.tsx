@@ -36,7 +36,7 @@ const Footer = () => {
 
 
   // Logo height configuration
-  const logoHeightRem = 3.5; // Adjust as needed based on your logo's desired visual height
+  const logoHeightRem = 8; // Adjust as needed based on your logo's desired visual height
 
   return (
     <footer className="bg-primary-300 pt-12 pb-16 relative overflow-hidden">
@@ -53,10 +53,10 @@ const Footer = () => {
           whileInView="visible" // Animate when in view
           viewport={{ once: true, margin: "-100px" }} // Trigger when 100px into view, only once
           variants={logoVariants} // Use the dedicated logo animation
-          className="mb-24" // Add margin below the logo before the columns start
+          className="mb-19" // Add margin below the logo before the columns start
           style={{ height: `${logoHeightRem}rem` }} // Control logo container height
         >
-          <div className="w-auto h-full transform hover:scale-105 transition-transform">
+          <div className="w-auto h-full transform hover:scale-103 transition-transform">
             {/* Ensure the Logo SVG scales correctly within its container */}
             {/* Assuming Logo component accepts className or is sized internally */}
             <Logo className="block h-full w-auto" /> {/* Add classes to the Logo SVG itself */}

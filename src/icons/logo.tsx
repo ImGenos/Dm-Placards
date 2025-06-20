@@ -1,11 +1,17 @@
 import React from "react";
 
-const Logo = () => {
+interface LogoProps {
+  className?: string; // Define the prop here
+}
+
+// Use LogoProps in the component's function signature
+const Logo = ({ className }: LogoProps) => {
   return (
-    <div className="h-40 flex items-center">
-      <img 
-        src="/logo.png" 
-        alt="DM Placards Logo" 
+    // Apply the className prop to the desired element
+    <div className={`h-40 flex items-center ${className}`}>
+      <img
+        src="/logo.png"
+        alt="DM Placards Logo"
         className="h-full w-auto"
       />
     </div>

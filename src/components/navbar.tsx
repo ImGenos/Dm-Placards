@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [toggled, setToggled] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const matches = useMediaQuery("(min-width: 1280px)");
+  const matches = useMediaQuery("(min-width: 1280px)"); // desktop size breakpoint
 
   // Add scroll effect
   useEffect(() => {
@@ -26,13 +26,18 @@ const Navbar = () => {
   const linkStyle = "text-xl leading-6 font-jost text-primary-200 hover:text-accent transition-all relative group";
   const activeLinkStyle = "after:content-[''] after:absolute after:h-[2px] after:w-0 after:left-0 after:bottom-[-4px] after:bg-accent after:transition-all group-hover:after:w-full";
 
-  // Configuration for Heights
-  const logoActualHeightRem = 10;
-  const navLinksBarHeightRem = 4;
-  const logoOverhangRem = (logoActualHeightRem - navLinksBarHeightRem) / 2;
+  // Configuration for Heights (Desktop)
+  const logoActualHeightRem = 8;
+  const navLinksBarHeightRem = 2;
+  const logoOverhangRem = ((logoActualHeightRem - navLinksBarHeightRem) / 2)+0.2;
   const headerVerticalPaddingStyleVal = `${logoOverhangRem}rem`;
-  const logoHeightClass = `h-[${logoActualHeightRem}rem]`;
+  const logoHeightClass = `h-[${logoActualHeightRem}rem]`; // Desktop logo height class
   const navLinksHeightClass = `h-[${navLinksBarHeightRem}rem]`;
+
+  // --- Mobile Logo Height ---
+  const mobileLogoActualHeightRem = 5; // Choose a smaller height for mobile
+  const mobileLogoHeightClass = `h-20`; // Mobile logo height class
+
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -55,6 +60,20 @@ const Navbar = () => {
           paddingBottom: headerVerticalPaddingStyleVal,
         }}
       >
+        {/* --- CORRECTED: Logo div position reverted --- */}
+        {/* This div remains a direct child of the main padded container */}
+        <div
+          className="absolute left-0 z-20 px-6 md:px-12 xl:px-0"
+          style={{ top: '0px' }} // Revert top style to original
+        >
+           {/* Keep the conditional height class applied ONLY to the anchor tag */}
+          <a href="/" aria-label="Go to homepage" className={`flex items-center ${matches ? logoHeightClass : mobileLogoHeightClass}`}>
+            <Logo />
+          </a>
+        </div>
+
+
+        {/* This div contains the nav links / mobile toggle */}
         <div
           className={`w-full flex justify-between items-center px-6 md:px-12 xl:px-0 relative z-10 ${navLinksHeightClass}`}
         >
@@ -64,13 +83,21 @@ const Navbar = () => {
                 <a href="/" className={`${linkStyle} ${activeLinkStyle}`}>Accueil</a>
                 <a href="/about" className={`${linkStyle} ${activeLinkStyle}`}>À Propos</a>
                 <a href="/services" className={`${linkStyle} ${activeLinkStyle}`}>Services</a>
-                <a href="/contact" className={`${linkStyle} ${activeLinkStyle} btn btn-outline rounded-full py-2 px-6`}>Nous Contacter</a>
+                {/* Added ml-8 for spacing consistency on desktop contact button */}
+                <a href="/contact" className={`${linkStyle} ml-8 btn btn-outline rounded-full py-2 px-6`}>Nous Contacter</a>
               </nav>
             )}
 
             {!matches && (
               <div
-                onClick={() => setToggled(!toggled)}
+                // --- Keep the Modified onClick handler for mobile ---
+                onClick={() => {
+                  if (!toggled && !matches) {
+                    console.log("Attempting to scroll to top on mobile menu open."); // Add this line
+                    window.scrollTo({ top: 1, behavior: 'smooth' });
+                  }
+                  setToggled(!toggled);
+                }}
                 className="space-y-1 cursor-pointer z-30"
                 aria-label="Toggle menu"
                 aria-expanded={toggled}
@@ -96,16 +123,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div
-          className="absolute left-0 z-20 px-6 md:px-12 xl:px-0"
-          style={{ top: '0px' }}
-        >
-          <a href="/" aria-label="Go to homepage" className={`flex items-center ${logoHeightClass}`}>
-            <Logo />
-          </a>
-        </div>
-
-        {/* Mobile Menu with improved transitions */}
+        {/* Mobile Menu overlay - This part remains the same */}
         {toggled && !matches && (
           <>
             {/* Backdrop overlay */}
@@ -116,7 +134,7 @@ const Navbar = () => {
               className="fixed inset-0 bg-primary-200 bg-opacity-30 backdrop-blur-sm z-40"
               onClick={() => setToggled(false)}
             />
-            
+
             {/* Menu panel */}
             <motion.nav
               initial={{ opacity: 0, x: "100%" }}
@@ -129,9 +147,11 @@ const Navbar = () => {
                 <a href="/" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Accueil</a>
                 <a href="/about" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>À Propos</a>
                 <a href="/services" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Services</a>
-                <a href="/contact" 
-                   className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl" 
-                   onClick={() => setToggled(false)}>
+                <a
+                   href="/contact"
+                   className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl"
+                   onClick={() => setToggled(false)}
+                >
                   Nous Contacter
                 </a>
               </div>
