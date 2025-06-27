@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../icons/logo.tsx";
 import useMediaQuery from "../utils/useMediaQuery.ts";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [toggled, setToggled] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(false);
   const matches = useMediaQuery("(min-width: 1280px)"); // desktop size breakpoint
 
   // Add scroll effect
@@ -38,6 +39,27 @@ const Navbar = () => {
   const mobileLogoActualHeightRem = 5; // Choose a smaller height for mobile
   const mobileLogoHeightClass = `h-20`; // Mobile logo height class
 
+  // Gallery dropdown data
+  const galleryItems = [
+    {
+      title: "Sous Pentes",
+      href: "/galerie/sous-pentes",
+      image: "/project1.png", // Using the same image as the sous-pentes page
+      description: "Aménagements sous pente sur mesure"
+    },
+    {
+      title: "Dressing",
+      href: "/galerie/dressing",
+      image: "/service2.png", // Using the same image as the dressing page
+      description: "Dressings personnalisés et fonctionnels"
+    },
+    {
+      title: "Bibliothèque",
+      href: "/galerie/bibliotheque",
+      image: "/service3.png", // Using the same image as the bibliotheque page
+      description: "Bibliothèques élégantes et pratiques"
+    }
+  ];
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -72,7 +94,6 @@ const Navbar = () => {
           </a>
         </div>
 
-
         {/* This div contains the nav links / mobile toggle */}
         <div
           className={`w-full flex justify-between items-center px-6 md:px-12 xl:px-0 relative z-10 ${navLinksHeightClass}`}
@@ -83,6 +104,85 @@ const Navbar = () => {
                 <a href="/" className={`${linkStyle} ${activeLinkStyle}`}>Accueil</a>
                 <a href="/about" className={`${linkStyle} ${activeLinkStyle}`}>À Propos</a>
                 <a href="/services" className={`${linkStyle} ${activeLinkStyle}`}>Services</a>
+                
+                {/* Gallery Dropdown */}
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setGalleryDropdownOpen(true)}
+                  onMouseLeave={() => setGalleryDropdownOpen(false)}
+                >
+                  <a href="/Gallerie" className={`${linkStyle} ${activeLinkStyle} flex items-center gap-1`}>
+                    Galerie
+                    <svg 
+                      className={`w-4 h-4 transition-transform duration-200 ${galleryDropdownOpen ? 'rotate-180' : ''}`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </a>
+
+                  <AnimatePresence>
+                    {galleryDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50"
+                      >
+                        <div className="p-4">
+                          <h3 className="text-lg font-dm font-semibold text-primary-200 mb-3">Nos Réalisations</h3>
+                          <div className="space-y-3">
+                            {galleryItems.map((item, index) => (
+                              <motion.a
+                                key={index}
+                                href={item.href}
+                                className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                                whileHover={{ x: 4 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="font-dm font-semibold text-primary-200 group-hover:text-accent transition-colors">
+                                    {item.title}
+                                  </h4>
+                                  <p className="text-sm text-text-gray font-jost mt-1">
+                                    {item.description}
+                                  </p>
+                                </div>
+                                <svg 
+                                  className="w-4 h-4 text-text-gray group-hover:text-accent transition-colors opacity-0 group-hover:opacity-100"
+                                  fill="none" 
+                                  stroke="currentColor" 
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </motion.a>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-3 border-t border-gray-100">
+                            <a 
+                              href="/Gallerie" 
+                              className="block text-center py-2 px-4 bg-accent hover:bg-accent/90 text-white rounded-lg font-jost font-medium transition-colors duration-200"
+                            >
+                              Voir toute la galerie
+                            </a>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 {/* Added ml-8 for spacing consistency on desktop contact button */}
                 <a href="/contact" className={`${linkStyle} ml-8 btn btn-outline rounded-full py-2 px-6`}>Nous Contacter</a>
               </nav>
@@ -147,6 +247,7 @@ const Navbar = () => {
                 <a href="/" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Accueil</a>
                 <a href="/about" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>À Propos</a>
                 <a href="/services" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Services</a>
+                <a href="/Gallerie" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Galerie</a>
                 <a
                    href="/contact"
                    className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl"
