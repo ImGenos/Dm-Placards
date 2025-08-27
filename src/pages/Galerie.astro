@@ -1,0 +1,54 @@
+---
+import MainLayout from '../layouts/main-layout.astro'
+import QuoteText from '../components/quote.tsx'
+import Instagram  from '../icons/instagram.tsx';
+
+// Import specific preview images from each category
+import sousPentesPreview from '../Galerie/sous-pente/1.jpg';
+import dressingPreview from '../Galerie/dressing/1.jpg';
+import bibliothequePreview from '../Galerie/biblio/1.jpg';
+---
+
+
+<MainLayout title = 'DM Placards - Galerie'>
+
+  <!-- Banner Section -->
+
+  <section class="w-full bg-[url('/project1.png')] bg-cover bg-center h-[50vh] flex justify-center items-end">
+    <div class="py-[30px] lg:py-[41px] px-[60px] lg:px-[152px] flex flex-col justify-center items-center bg-white rounded-tl-[37px] rounded-tr-[37px] gap-2.5">
+      <h1 class="text-[30px] leading-[40px] lg:text-[50px] lg:leading-[62px] font-dm capitalize text-primary-200 ">Galerie</h1>
+      <p class="text-base lg:text-[22px] lg:leading-[33px] tracking-tight font-jost text-text-gray"> <a href="/">Accueil</a> / Galerie </p>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="w-full px-12 lg:px-0 pt-[100px] lg:pt-[200px] lg:max-w-[1200px] mx-auto flex flex-col items-center justify-center gap-16">
+    <h2 class="text-4xl font-bold text-primary-200">Nos Réalisations</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      
+      <a href="/galerie/sous-pentes" class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img src={sousPentesPreview.src} alt="Sous Pentes Category" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"/>
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <h3 class="text-white text-2xl font-bold">Sous Pentes</h3>
+        </div>
+      </a>
+
+      <a href="/galerie/dressing" class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img src={dressingPreview.src} alt="Dressing Category" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"/>
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <h3 class="text-white text-2xl font-bold">Dressing</h3>
+        </div>
+      </a>
+
+      <a href="/galerie/bibliotheque" class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <img src={bibliothequePreview.src} alt="Bibliothèque Category" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"/>
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <h3 class="text-white text-2xl font-bold">Bibliothèque</h3>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</MainLayout>
