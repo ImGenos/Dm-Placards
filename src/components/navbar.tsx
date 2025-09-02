@@ -156,7 +156,7 @@ const Navbar = () => {
                             ))}
                           </div>
                           <div className="mt-4 pt-3 border-t border-gray-100">
-                            <a href="/Gallerie" className="block text-center py-2 px-4 bg-accent hover:bg-accent/90 text-white rounded-lg font-jost font-medium transition-colors duration-200">
+                            <a href="/galerie" className="block text-center py-2 px-4 bg-accent hover:bg-accent/90 text-white rounded-lg font-jost font-medium transition-colors duration-200">
                               Voir toute la galerie
                             </a>
                           </div>

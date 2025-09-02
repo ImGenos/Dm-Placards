@@ -7,6 +7,57 @@ import Instagram  from '../icons/instagram.tsx';
 import sousPentesPreview from '../Galerie/sous-pente/1.jpg';
 import dressingPreview from '../Galerie/dressing/1.jpg';
 import bibliothequePreview from '../Galerie/biblio/1.jpg';
+
+// Import all images from each category
+// Sous-pente images
+import sousPente1 from '../Galerie/sous-pente/1.jpg';
+import sousPente2 from '../Galerie/sous-pente/IMG-20250318-WA0030.jpg';
+import sousPente3 from '../Galerie/sous-pente/IMG-20250318-WA0031.jpg';
+import sousPente4 from '../Galerie/sous-pente/IMG-20250318-WA0037.jpg';
+import sousPente5 from '../Galerie/sous-pente/IMG-20250318-WA0042.jpg';
+import sousPente6 from '../Galerie/sous-pente/IMG-20250318-WA0071.jpg';
+import sousPente7 from '../Galerie/sous-pente/IMG-20250318-WA0073.jpg';
+import sousPente8 from '../Galerie/sous-pente/IMG-20250318-WA0074.jpg';
+import sousPente9 from '../Galerie/sous-pente/IMG-20250318-WA0075.jpg';
+import sousPente10 from '../Galerie/sous-pente/IMG-20250318-WA0076.jpg';
+
+// Dressing images
+import dressing1 from '../Galerie/dressing/1.jpg';
+import dressing2 from '../Galerie/dressing/IMG-20250318-WA0023.jpg';
+import dressing3 from '../Galerie/dressing/IMG-20250318-WA0028.jpg';
+
+// Biblio images
+import biblio1 from '../Galerie/biblio/1.jpg';
+import biblio2 from '../Galerie/biblio/IMG-20250318-WA0038.jpg';
+import biblio3 from '../Galerie/biblio/IMG-20250318-WA0053.jpg';
+import biblio4 from '../Galerie/biblio/IMG-20250318-WA0054.jpg';
+import biblio5 from '../Galerie/biblio/IMG-20250318-WA0057.jpg';
+import biblio6 from '../Galerie/biblio/IMG-20250318-WA0070.jpg';
+import biblio7 from '../Galerie/biblio/IMG-20250318-WA0072.jpg';
+
+// Combine all images with their categories
+const allImages = [
+  { src: sousPente1, category: 'Sous Pentes', alt: 'Sous Pentes 1' },
+  { src: sousPente2, category: 'Sous Pentes', alt: 'Sous Pentes 2' },
+  { src: sousPente3, category: 'Sous Pentes', alt: 'Sous Pentes 3' },
+  { src: sousPente4, category: 'Sous Pentes', alt: 'Sous Pentes 4' },
+  { src: sousPente5, category: 'Sous Pentes', alt: 'Sous Pentes 5' },
+  { src: sousPente6, category: 'Sous Pentes', alt: 'Sous Pentes 6' },
+  { src: sousPente7, category: 'Sous Pentes', alt: 'Sous Pentes 7' },
+  { src: sousPente8, category: 'Sous Pentes', alt: 'Sous Pentes 8' },
+  { src: sousPente9, category: 'Sous Pentes', alt: 'Sous Pentes 9' },
+  { src: sousPente10, category: 'Sous Pentes', alt: 'Sous Pentes 10' },
+  { src: dressing1, category: 'Dressing', alt: 'Dressing 1' },
+  { src: dressing2, category: 'Dressing', alt: 'Dressing 2' },
+  { src: dressing3, category: 'Dressing', alt: 'Dressing 3' },
+  { src: biblio1, category: 'Bibliothèque', alt: 'Bibliothèque 1' },
+  { src: biblio2, category: 'Bibliothèque', alt: 'Bibliothèque 2' },
+  { src: biblio3, category: 'Bibliothèque', alt: 'Bibliothèque 3' },
+  { src: biblio4, category: 'Bibliothèque', alt: 'Bibliothèque 4' },
+  { src: biblio5, category: 'Bibliothèque', alt: 'Bibliothèque 5' },
+  { src: biblio6, category: 'Bibliothèque', alt: 'Bibliothèque 6' },
+  { src: biblio7, category: 'Bibliothèque', alt: 'Bibliothèque 7' },
+];
 ---
 
 
@@ -51,4 +102,157 @@ import bibliothequePreview from '../Galerie/biblio/1.jpg';
     </div>
   </section>
 
+  <!-- All Images Section -->
+  <section class="w-full px-12 lg:px-0 pt-[100px] pb-[100px] lg:pt-[150px] lg:pb-[150px] lg:max-w-[1200px] mx-auto flex flex-col items-center justify-center gap-16">
+    <h2 class="text-4xl font-bold text-primary-200">Toutes nos Réalisations</h2>
+    <p class="text-lg text-text-gray text-center max-w-2xl">
+      Découvrez l'ensemble de nos créations sur mesure dans toutes nos catégories
+    </p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+      {allImages.map((image, index) => (
+        <div 
+          class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+          onclick={`openLightbox(${index})`}
+        >
+          <img 
+            src={image.src.src} 
+            alt={image.alt}
+            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+              <p class="text-white text-sm font-medium mb-1">{image.category}</p>
+              <div class="w-8 h-8 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+      <div class="relative max-w-7xl max-h-full mx-4">
+        <!-- Close Button -->
+        <button 
+          onclick="closeLightbox()" 
+          class="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <!-- Previous Button -->
+        <button 
+          onclick="previousImage()" 
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Next Button -->
+        <button 
+          onclick="nextImage()" 
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+        <!-- Image Container -->
+        <div class="text-center">
+          <img 
+            id="lightbox-image" 
+            src="" 
+            alt="" 
+            class="max-w-full max-h-[80vh] object-contain rounded-lg"
+          />
+          <div class="mt-4 text-white">
+            <p id="lightbox-category" class="text-lg font-medium"></p>
+            <p id="lightbox-counter" class="text-sm text-gray-300 mt-1"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </MainLayout>
+
+<script define:vars={{ allImages }}>
+  // Convert Astro image objects to JavaScript-friendly format
+  const images = allImages.map(img => ({
+    src: img.src.src,
+    category: img.category,
+    alt: img.alt
+  }));
+
+  let currentImageIndex = 0;
+
+  function openLightbox(index) {
+    currentImageIndex = index;
+    updateLightboxImage();
+    document.getElementById('lightbox').classList.remove('hidden');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.add('hidden');
+  }
+
+  function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateLightboxImage();
+  }
+
+  function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateLightboxImage();
+  }
+
+  function updateLightboxImage() {
+    const image = images[currentImageIndex];
+    document.getElementById('lightbox-image').src = image.src;
+    document.getElementById('lightbox-image').alt = image.alt;
+    document.getElementById('lightbox-category').textContent = image.category;
+    document.getElementById('lightbox-counter').textContent = `${currentImageIndex + 1} / ${images.length}`;
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(event) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('hidden')) {
+      switch(event.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          previousImage();
+          break;
+        case 'ArrowRight':
+          nextImage();
+          break;
+      }
+    }
+  });
+
+  // Close lightbox when clicking outside the image
+  document.getElementById('lightbox').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeLightbox();
+    }
+  });
+
+  // Make functions globally available
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.nextImage = nextImage;
+  window.previousImage = previousImage;
+</script>
