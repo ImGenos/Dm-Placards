@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../icons/logo.tsx";
 import useMediaQuery from "../utils/useMediaQuery.ts";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +27,6 @@ const Navbar = () => {
   const logoHeightClass = `h-[${logoActualHeightRem}rem]`;
   const navLinksHeightClass = `h-[${navLinksBarHeightRem}rem]`;
 
-  const mobileLogoActualHeightRem = 5;
   const mobileLogoHeightClass = `h-20`;
 
   const galleryItems = [
