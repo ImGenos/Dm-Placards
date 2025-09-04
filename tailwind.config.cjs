@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         hero: "url('/banner.png')",
+        'hero-overlay': "linear-gradient(135deg, rgba(41, 47, 54, 0.7) 0%, rgba(41, 47, 54, 0.4) 50%, rgba(205, 162, 116, 0.3) 100%), url('/banner.png')",
         main: "url('/Background.jpg')",
         about: "url('/aboutpage-bg.png')",
         services: "url('/servicespage-bg.jpg')",
@@ -15,7 +16,7 @@ module.exports = {
       },
       fontFamily: {
         dm: ["DM Serif Display", "serif"],
-        jost: ["Jost", "sans-serif"], 
+        jost: ["Jost", "sans-serif"],
         serif: ["DM Serif Display", "serif"], // Alternative reference
       },
       colors: {
@@ -100,6 +101,14 @@ module.exports = {
         ".btn-outline:hover": {
           backgroundColor: "#CDA274",
           color: "white",
+        },
+        ".glass": {
+          backdropFilter: "blur(10px)",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+        },
+        ".text-shadow": {
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
         },
       });
     }),
