@@ -97,7 +97,7 @@ const Navbar = () => {
                 <a href="/about" className={`${linkStyle} ${activeLinkStyle}`}>À Propos</a>
                 <a href="/services" className={`${linkStyle} ${activeLinkStyle}`}>Services</a>
                 <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  <a href="/Gallerie" className={`${linkStyle} ${activeLinkStyle} flex items-center gap-1`}>
+                  <a href="/galerie" className={`${linkStyle} ${activeLinkStyle} flex items-center gap-1`}>
                     Galerie
                     <svg className={`w-4 h-4 transition-transform duration-200 ${galleryDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -209,7 +209,7 @@ const Navbar = () => {
                 <a href="/" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Accueil</a>
                 <a href="/about" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>À Propos</a>
                 <a href="/services" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Services</a>
-                <a href="/Gallerie" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Galerie</a>
+                <a href="/galerie" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Galerie</a>
                 <a href="/contact" className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl" onClick={() => setToggled(false)}>
                   Nous Contacter
                 </a>
