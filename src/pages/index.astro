@@ -5,6 +5,7 @@ import ArrowSec from "../icons/arrow-sec.tsx";
 import CallIcon from "../icons/call.tsx";
 import Experience from "../components/experience.tsx";
 import GoogleMap from "../components/google-map.tsx";
+import GoogleReviews from "../components/google-reviews.tsx";
 
 const services = [
 	{
@@ -290,6 +291,14 @@ const experiences = [
 			}
 		</div>
 	</section>
+
+	<!-- Google Reviews Section with optimized loading -->
+	<GoogleReviews 
+		maxReviews={6}
+		className="lg:max-w-[1200px] px-12 xl:px-0 w-full mx-auto pt-[100px] lg:pt-[200px]"
+		showOverallRating={true}
+		client:visible
+	/>
 
 	<!-- Location Section -->
 	<section

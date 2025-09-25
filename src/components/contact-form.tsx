@@ -43,7 +43,7 @@ const ContactForm = () => {
           cols={30}
           rows={10}
           placeholder="Bonjour, Je souhaiterais réaliser...
-(Pensez à préciser les dimmensions pour que notre devis soit le plus précis possible)"
+(Pensez à préciser les dimmensions pour que notre devis soit le plus précis possible et joindre une photo)"
         ></textarea>
 
         <div className="w-full flex justify-end col-span-2">
