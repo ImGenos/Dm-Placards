@@ -33,19 +33,19 @@ const Navbar = () => {
     {
       title: "Sous Pentes",
       href: "/galerie/sous-pentes",
-      image: "/src/Galerie/sous-pente/1.jpg",
+      image: "/Galerie/sous-pente/1.jpg",
       description: "Aménagements sous pente sur mesure"
     },
     {
       title: "Dressing",
       href: "/galerie/dressing",
-      image: "/src/Galerie/dressing/1.jpg",
+      image: "/Galerie/dressing/1.jpg",
       description: "Dressings personnalisés et fonctionnels"
     },
     {
       title: "Bibliothèque",
       href: "/galerie/bibliotheque",
-      image: "/src/Galerie/biblio/1.jpg",
+      image: "/Galerie/biblio/1.jpg",
       description: "Bibliothèques élégantes et pratiques"
     }
   ];
