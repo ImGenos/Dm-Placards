@@ -2,8 +2,11 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-const sousPentesImagePaths = import.meta.glob('/src/Galerie/sous-pente/*.{jpg,jpeg,png,gif,webp}');
-const sousPentesImages = Object.keys(sousPentesImagePaths);
+const sousPentesImagePaths = import.meta.glob('/src/Galerie/sous-pente/*.{jpg,jpeg,png,gif,webp}', { eager: true, import: 'default' });
+const sousPentesImages = Object.keys(sousPentesImagePaths).map(path => {
+  const module = sousPentesImagePaths[path] as any;
+  return module;
+});
 ---
 
 <MainLayout title = 'DM Placards - Sous Pentes'>

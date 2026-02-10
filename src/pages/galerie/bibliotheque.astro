@@ -2,8 +2,11 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-const bibliothequeImagePaths = import.meta.glob('/src/Galerie/biblio/*.{jpg,jpeg,png,gif,webp}');
-const bibliothequeImages = Object.keys(bibliothequeImagePaths);
+const bibliothequeImagePaths = import.meta.glob('/src/Galerie/biblio/*.{jpg,jpeg,png,gif,webp}', { eager: true, import: 'default' });
+const bibliothequeImages = Object.keys(bibliothequeImagePaths).map(path => {
+  const module = bibliothequeImagePaths[path] as any;
+  return module;
+});
 ---
 
 <MainLayout title = 'DM Placards - Bibliothèque'>
