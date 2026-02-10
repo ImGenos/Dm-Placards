@@ -2,12 +2,9 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-// Get all image files from public/Galerie/dressing
-const dressingImages = [
-  '/Galerie/dressing/1.jpg',
-  '/Galerie/dressing/IMG-20250318-WA0023.jpg',
-  '/Galerie/dressing/IMG-20250318-WA0028.jpg',
-];
+// Automatically get all images from public/Galerie/dressing
+const images = await Astro.glob('/public/Galerie/dressing/*.{jpg,jpeg,png,gif,webp}');
+const dressingImages = images.map(img => img.default).filter(Boolean);
 ---
 
 <MainLayout title = 'DM Placards - Dressing'>

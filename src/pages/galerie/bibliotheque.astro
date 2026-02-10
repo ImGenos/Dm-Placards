@@ -2,16 +2,9 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-// Get all image files from public/Galerie/biblio
-const bibliothequeImages = [
-  '/Galerie/biblio/1.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0038.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0053.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0054.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0057.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0070.jpg',
-  '/Galerie/biblio/IMG-20250318-WA0072.jpg',
-];
+// Automatically get all images from public/Galerie/biblio
+const images = await Astro.glob('/public/Galerie/biblio/*.{jpg,jpeg,png,gif,webp}');
+const bibliothequeImages = images.map(img => img.default).filter(Boolean);
 ---
 
 <MainLayout title = 'DM Placards - Bibliothèque'>

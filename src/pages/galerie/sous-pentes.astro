@@ -2,19 +2,9 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-// Get all image files from public/Galerie/sous-pente
-const sousPentesImages = [
-  '/Galerie/sous-pente/1.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0030.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0031.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0037.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0042.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0071.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0073.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0074.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0075.jpg',
-  '/Galerie/sous-pente/IMG-20250318-WA0076.jpg',
-];
+// Automatically get all images from public/Galerie/sous-pente
+const images = await Astro.glob('/public/Galerie/sous-pente/*.{jpg,jpeg,png,gif,webp}');
+const sousPentesImages = images.map(img => img.default).filter(Boolean);
 ---
 
 <MainLayout title = 'DM Placards - Sous Pentes'>
