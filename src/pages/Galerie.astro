@@ -3,60 +3,33 @@ import MainLayout from "../layouts/main-layout.astro";
 import QuoteText from "../components/quote.tsx";
 import Instagram from "../icons/instagram.tsx";
 
-// Import specific preview images from each category
-import sousPentesPreview from "../Galerie/sous-pente/1.jpg";
-import dressingPreview from "../Galerie/dressing/1.jpg";
-import bibliothequePreview from "../Galerie/biblio/1.jpg";
-
-// Import all images from each category
-// Sous-pente images
-import sousPente1 from "../Galerie/sous-pente/1.jpg";
-import sousPente2 from "../Galerie/sous-pente/IMG-20250318-WA0030.jpg";
-import sousPente3 from "../Galerie/sous-pente/IMG-20250318-WA0031.jpg";
-import sousPente4 from "../Galerie/sous-pente/IMG-20250318-WA0037.jpg";
-import sousPente5 from "../Galerie/sous-pente/IMG-20250318-WA0042.jpg";
-import sousPente6 from "../Galerie/sous-pente/IMG-20250318-WA0071.jpg";
-import sousPente7 from "../Galerie/sous-pente/IMG-20250318-WA0073.jpg";
-import sousPente8 from "../Galerie/sous-pente/IMG-20250318-WA0074.jpg";
-import sousPente9 from "../Galerie/sous-pente/IMG-20250318-WA0075.jpg";
-import sousPente10 from "../Galerie/sous-pente/IMG-20250318-WA0076.jpg";
-
-// Dressing images
-import dressing1 from "../Galerie/dressing/1.jpg";
-import dressing2 from "../Galerie/dressing/IMG-20250318-WA0023.jpg";
-import dressing3 from "../Galerie/dressing/IMG-20250318-WA0028.jpg";
-
-// Biblio images
-import biblio1 from "../Galerie/biblio/1.jpg";
-import biblio2 from "../Galerie/biblio/IMG-20250318-WA0038.jpg";
-import biblio3 from "../Galerie/biblio/IMG-20250318-WA0053.jpg";
-import biblio4 from "../Galerie/biblio/IMG-20250318-WA0054.jpg";
-import biblio5 from "../Galerie/biblio/IMG-20250318-WA0057.jpg";
-import biblio6 from "../Galerie/biblio/IMG-20250318-WA0070.jpg";
-import biblio7 from "../Galerie/biblio/IMG-20250318-WA0072.jpg";
+// Define image paths from public folder
+const sousPentesPreview = "/Galerie/sous-pente/1.jpg";
+const dressingPreview = "/Galerie/dressing/1.jpg";
+const bibliothequePreview = "/Galerie/biblio/1.jpg";
 
 // Combine all images with their categories
 const allImages = [
-  { src: sousPente1, category: "Sous Pentes", alt: "Sous Pentes 1" },
-  { src: sousPente2, category: "Sous Pentes", alt: "Sous Pentes 2" },
-  { src: sousPente3, category: "Sous Pentes", alt: "Sous Pentes 3" },
-  { src: sousPente4, category: "Sous Pentes", alt: "Sous Pentes 4" },
-  { src: sousPente5, category: "Sous Pentes", alt: "Sous Pentes 5" },
-  { src: sousPente6, category: "Sous Pentes", alt: "Sous Pentes 6" },
-  { src: sousPente7, category: "Sous Pentes", alt: "Sous Pentes 7" },
-  { src: sousPente8, category: "Sous Pentes", alt: "Sous Pentes 8" },
-  { src: sousPente9, category: "Sous Pentes", alt: "Sous Pentes 9" },
-  { src: sousPente10, category: "Sous Pentes", alt: "Sous Pentes 10" },
-  { src: dressing1, category: "Dressing", alt: "Dressing 1" },
-  { src: dressing2, category: "Dressing", alt: "Dressing 2" },
-  { src: dressing3, category: "Dressing", alt: "Dressing 3" },
-  { src: biblio1, category: "Bibliothèque", alt: "Bibliothèque 1" },
-  { src: biblio2, category: "Bibliothèque", alt: "Bibliothèque 2" },
-  { src: biblio3, category: "Bibliothèque", alt: "Bibliothèque 3" },
-  { src: biblio4, category: "Bibliothèque", alt: "Bibliothèque 4" },
-  { src: biblio5, category: "Bibliothèque", alt: "Bibliothèque 5" },
-  { src: biblio6, category: "Bibliothèque", alt: "Bibliothèque 6" },
-  { src: biblio7, category: "Bibliothèque", alt: "Bibliothèque 7" },
+  { src: "/Galerie/sous-pente/1.jpg", category: "Sous Pentes", alt: "Sous Pentes 1" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0030.jpg", category: "Sous Pentes", alt: "Sous Pentes 2" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0031.jpg", category: "Sous Pentes", alt: "Sous Pentes 3" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0037.jpg", category: "Sous Pentes", alt: "Sous Pentes 4" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0042.jpg", category: "Sous Pentes", alt: "Sous Pentes 5" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0071.jpg", category: "Sous Pentes", alt: "Sous Pentes 6" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0073.jpg", category: "Sous Pentes", alt: "Sous Pentes 7" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0074.jpg", category: "Sous Pentes", alt: "Sous Pentes 8" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0075.jpg", category: "Sous Pentes", alt: "Sous Pentes 9" },
+  { src: "/Galerie/sous-pente/IMG-20250318-WA0076.jpg", category: "Sous Pentes", alt: "Sous Pentes 10" },
+  { src: "/Galerie/dressing/1.jpg", category: "Dressing", alt: "Dressing 1" },
+  { src: "/Galerie/dressing/IMG-20250318-WA0023.jpg", category: "Dressing", alt: "Dressing 2" },
+  { src: "/Galerie/dressing/IMG-20250318-WA0028.jpg", category: "Dressing", alt: "Dressing 3" },
+  { src: "/Galerie/biblio/1.jpg", category: "Bibliothèque", alt: "Bibliothèque 1" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0038.jpg", category: "Bibliothèque", alt: "Bibliothèque 2" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0053.jpg", category: "Bibliothèque", alt: "Bibliothèque 3" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0054.jpg", category: "Bibliothèque", alt: "Bibliothèque 4" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0057.jpg", category: "Bibliothèque", alt: "Bibliothèque 5" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0070.jpg", category: "Bibliothèque", alt: "Bibliothèque 6" },
+  { src: "/Galerie/biblio/IMG-20250318-WA0072.jpg", category: "Bibliothèque", alt: "Bibliothèque 7" },
 ];
 ---
 
@@ -94,7 +67,7 @@ const allImages = [
         class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         <img
-          src={sousPentesPreview.src}
+          src={sousPentesPreview}
           alt="Sous Pentes Category"
           class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -110,7 +83,7 @@ const allImages = [
         class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         <img
-          src={dressingPreview.src}
+          src={dressingPreview}
           alt="Dressing Category"
           class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -126,7 +99,7 @@ const allImages = [
         class="group relative block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         <img
-          src={bibliothequePreview.src}
+          src={bibliothequePreview}
           alt="Bibliothèque Category"
           class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -161,7 +134,7 @@ const allImages = [
                 onclick={`openLightbox(${index})`}
               >
                 <img
-                  src={image.src.src}
+                  src={image.src}
                   alt={image.alt}
                   class="w-full h-64 object-cover object-center transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
@@ -284,12 +257,8 @@ const allImages = [
 </MainLayout>
 
 <script is:inline define:vars={{ allImages }}>
-  // Convert Astro image objects to JavaScript-friendly format
-  const images = allImages.map((img) => ({
-    src: img.src.src,
-    category: img.category,
-    alt: img.alt,
-  }));
+  // Images are already in the correct format
+  const images = allImages;
 
   let currentImageIndex = 0;
 
