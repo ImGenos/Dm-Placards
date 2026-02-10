@@ -164,6 +164,7 @@ const Navbar = () => {
                     )}
                   </AnimatePresence>
                 </div>
+                <a href="/le-magasin" className={`${linkStyle} ${activeLinkStyle}`}>Le Magasin</a>
                 <a href="/contact" className={`${linkStyle} ml-8 btn btn-outline rounded-full py-2 px-6`}>Nous Contacter</a>
               </nav>
             )}
@@ -210,6 +211,7 @@ const Navbar = () => {
                 <a href="/about" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>À Propos</a>
                 <a href="/services" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Services</a>
                 <a href="/galerie" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Galerie</a>
+                <a href="/le-magasin" className={`${linkStyle} text-2xl`} onClick={() => setToggled(false)}>Le Magasin</a>
                 <a href="/contact" className="mt-4 btn btn-primary rounded-full py-3 px-8 text-xl" onClick={() => setToggled(false)}>
                   Nous Contacter
                 </a>
