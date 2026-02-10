@@ -1,10 +1,15 @@
 ---
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Automatically get all images from public/Galerie/dressing
-const images = await Astro.glob('/public/Galerie/dressing/*.{jpg,jpeg,png,gif,webp}');
-const dressingImages = images.map(img => img.default).filter(Boolean);
+// Read all images from public/Galerie/dressing at build time
+const imagesDir = join(process.cwd(), 'public', 'Galerie', 'dressing');
+const files = readdirSync(imagesDir);
+const dressingImages = files
+  .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+  .map(file => `/Galerie/dressing/${file}`);
 ---
 
 <MainLayout title = 'DM Placards - Dressing'>

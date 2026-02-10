@@ -1,10 +1,15 @@
 ---
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Automatically get all images from public/Galerie/sous-pente
-const images = await Astro.glob('/public/Galerie/sous-pente/*.{jpg,jpeg,png,gif,webp}');
-const sousPentesImages = images.map(img => img.default).filter(Boolean);
+// Read all images from public/Galerie/sous-pente at build time
+const imagesDir = join(process.cwd(), 'public', 'Galerie', 'sous-pente');
+const files = readdirSync(imagesDir);
+const sousPentesImages = files
+  .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+  .map(file => `/Galerie/sous-pente/${file}`);
 ---
 
 <MainLayout title = 'DM Placards - Sous Pentes'>
