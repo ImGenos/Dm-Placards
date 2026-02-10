@@ -2,11 +2,12 @@
 import MainLayout from '../../layouts/main-layout.astro'
 import ImageGallery from '../../components/ImageGallery.tsx'
 
-const dressingImagePaths = import.meta.glob('/src/Galerie/dressing/*.{jpg,jpeg,png,gif,webp}', { eager: true, import: 'default' });
-const dressingImages = Object.keys(dressingImagePaths).map(path => {
-  const module = dressingImagePaths[path] as any;
-  return module;
-});
+// Get all image files from public/Galerie/dressing
+const dressingImages = [
+  '/Galerie/dressing/1.jpg',
+  '/Galerie/dressing/IMG-20250318-WA0023.jpg',
+  '/Galerie/dressing/IMG-20250318-WA0028.jpg',
+];
 ---
 
 <MainLayout title = 'DM Placards - Dressing'>
