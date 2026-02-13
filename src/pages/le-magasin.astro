@@ -61,17 +61,17 @@ const expositions = [
 		</div>
 
 		<!-- Content -->
-		<div class="relative z-10 h-full flex items-center justify-center pb-20 md:pb-16">
+		<div class="relative z-10 h-full flex items-center justify-center">
 			<div class="lg:max-w-[1200px] mx-auto px-12 xl:px-0 w-full text-center">
 				<div class="max-w-4xl mx-auto">
 					<h1 class="text-[45px] leading-tight md:text-[60px] lg:text-[70px] pb-6 font-dm text-white">
 						Le Magasin
 					</h1>
 					<div class="w-24 h-1 bg-accent mb-6 mx-auto"></div>
-					<p class="text-xl md:text-2xl font-jost text-white/90 leading-relaxed mb-6 md:mb-8">
+					<p class="text-xl md:text-2xl font-jost text-white/90 leading-relaxed mb-8">
 						Expositions armoires, bureaux & dressings
 					</p>
-					<p class="text-base md:text-lg lg:text-xl font-jost text-white/80 leading-relaxed px-4 md:px-0">
+					<p class="text-lg md:text-xl font-jost text-white/80 leading-relaxed">
 						Placard, dressing, bibliothèque, sous-pente, commode, bureau, structure de lit, chevet, 
 						dessous d'escalier, portes coulissantes, portes ouvrantes, séparation de pièces
 					</p>
@@ -82,10 +82,12 @@ const expositions = [
 		<!-- Scroll Indicator -->
 		<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
 			<div class="flex flex-col items-center gap-2 animate-bounce">
+				<div class="hidden sm:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex-col items-center gap-2 animate-bounce">
 				<span class="text-white/70 text-sm font-jost">Découvrir</span>
 				<svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
 				</svg>
+				</div>
 			</div>
 		</div>
 	</section>
