@@ -12,7 +12,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:doc-generator": "vitest run src/doc-generator",
+    "generate-docs": "vitest run src/doc-generator/generate-docs-standalone.test.ts"
   },
   "dependencies": {
     "@astrojs/netlify": "^3.0.2",
@@ -34,6 +36,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest-axe": "^3.5.9",
     "@vitest/ui": "^1.6.1",
+    "image-size": "^2.0.2",
     "jest-axe": "^10.0.0",
     "jsdom": "^26.1.0",
     "vitest": "^1.6.1"

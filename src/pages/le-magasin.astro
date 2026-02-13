@@ -1,0 +1,155 @@
+---
+import MainLayout from "../layouts/main-layout.astro";
+import Button from "../components/button.tsx";
+import GoogleMap from "../components/google-map.tsx";
+
+const expositions = [
+	{
+		title: "Meuble Télévision Encastrable",
+		description: "Vous voulez cacher votre télévision, tout comme votre box internet et mettre en valeur vos bibelots et livres favoris. Voici un exemple de meuble Loung Télévision encastrable deux côtés coulissants niveau TV, huit portes ouvrantes haut et bas, avec niches de rangements",
+		image: "/photo1.jpg",
+		alt: "Meuble télévision encastrable avec rangements"
+	},
+	{
+		title: "Bibliothèque",
+		description: "Meuble à Rayonnages Modifiable à volonté il révélera tout son potentiel dans un salon à la fois moderne contemporain et design. Ses lignes épurées offriront du caractère à votre pièce.",
+		image: "/photo2.jpg",
+		alt: "Bibliothèque moderne avec rayonnages modulables"
+	},
+	{
+		title: "Exposition Armoires",
+		description: "Exposition d'armoires avec portes coulissantes miroir ou laquée. Plusieurs choix de matériaux et de finitions vous seront proposés pour la réalisation de votre projet.",
+		image: "/photo3.jpg",
+		alt: "Exposition d'armoires avec portes coulissantes"
+	},
+	{
+		title: "Bureau",
+		description: "Bureau arrondi avec retour et bibliothèque d'angle assortie pour un rangement pratique fonctionnel et efficace",
+		image: "/photo4.jpg",
+		alt: "Bureau arrondi avec bibliothèque d'angle"
+	},
+	{
+		title: "Exposition Magasin",
+		description: "Plusieurs réalisations d'armoires Bureaux Dressings et accessoires sont exposés pour vous donnez des idées de réalisations. Quelque soit l'espace ou vous-vous désirez réaliser votre projet , un large choix de matériaux Bois, miroirs, verres laqués et une gamme de coloris très étendue permettent d'harmoniser votre meuble sur mesure avec le design de votre pièce, vos goûts et vos envies , nous réalisons vos portes de placards armoires à vos dimensions.",
+		image: "/photo5.jpg",
+		alt: "Exposition du magasin avec différents meubles"
+	},
+	{
+		title: "Dressing",
+		description: "Nos dressings et aménagements sur mesure s'adaptent aux petits comme aux grands espaces et se personnalisent grâce à un large éventail de finitions",
+		image: "/photo6.jpg",
+		alt: "Dressing sur mesure avec aménagements personnalisés"
+	},
+];
+---
+
+<MainLayout title="Le Magasin - Expositions armoires Bureaux Dressings">
+	<!-- Hero Section with Video Background -->
+	<section class="relative w-full h-[60vh] min-h-[500px] overflow-hidden">
+		<!-- Video Background with Overlay -->
+		<div class="absolute inset-0">
+			<video 
+				autoplay 
+				loop 
+				muted 
+				playsinline
+				class="w-full h-full object-cover scale-105"
+			>
+				<source src="/vidéo-DM-Placards.mp4" type="video/mp4" />
+			</video>
+			<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+		</div>
+
+		<!-- Content -->
+		<div class="relative z-10 h-full flex items-center justify-center">
+			<div class="lg:max-w-[1200px] mx-auto px-12 xl:px-0 w-full text-center">
+				<div class="max-w-4xl mx-auto">
+					<h1 class="text-[45px] leading-tight md:text-[60px] lg:text-[70px] pb-6 font-dm text-white">
+						Le Magasin
+					</h1>
+					<div class="w-24 h-1 bg-accent mb-6 mx-auto"></div>
+					<p class="text-xl md:text-2xl font-jost text-white/90 leading-relaxed mb-8">
+						Expositions armoires, bureaux & dressings
+					</p>
+					<p class="text-lg md:text-xl font-jost text-white/80 leading-relaxed">
+						Placard, dressing, bibliothèque, sous-pente, commode, bureau, structure de lit, chevet, 
+						dessous d'escalier, portes coulissantes, portes ouvrantes, séparation de pièces
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Scroll Indicator -->
+		<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+			<div class="flex flex-col items-center gap-2 animate-bounce">
+				<span class="text-white/70 text-sm font-jost">Découvrir</span>
+				<svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+				</svg>
+			</div>
+		</div>
+	</section>
+
+	<!-- Expositions Grid -->
+	<section class="lg:max-w-[1200px] mx-auto px-12 xl:px-0 py-8">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+			{
+				expositions.map((expo) => {
+					return (
+						<div class="flex flex-col">
+							{/* Image */}
+							<div class="w-full mb-6">
+								<img 
+									src={expo.image}
+									alt={expo.alt}
+									class="w-full h-auto rounded-lg shadow-lg object-cover"
+								/>
+							</div>
+							
+							{/* Content */}
+							<div class="flex flex-col">
+								<h2 class="text-xl md:text-2xl font-dm text-primary-100 mb-3">
+									{expo.title}
+								</h2>
+								<p class="text-sm md:text-base font-jost text-text-gray leading-relaxed">
+									{expo.description}
+								</p>
+							</div>
+						</div>
+					);
+				})
+			}
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="lg:max-w-[1200px] mx-auto px-12 xl:px-0 py-16 text-center">
+		<Button text="Contactez-nous pour votre projet" href="/contact" />
+	</section>
+
+	<!-- Location Section -->
+	<section class="lg:max-w-[1200px] px-12 xl:px-0 w-full mx-auto py-16 lg:py-24">
+		<div class="flex flex-col gap-8 lg:gap-12">
+			<div class="text-center">
+				<h2 class="font-dm tracking-wide text-[30px] lg:text-[45px] text-text-blue pb-4">
+					Visitez Notre Magasin
+				</h2>
+				<p class="text-base md:text-lg font-jost text-text-gray leading-relaxed lg:max-w-[70%] mx-auto">
+					Découvrez nos expositions de rangements sur-mesure dans notre showroom.
+				</p>
+			</div>
+			<GoogleMap
+				height="450px"
+				className="rounded-2xl overflow-hidden shadow-lg"
+				client:load
+			/>
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	/* Smooth transitions */
+	img {
+		transition: transform 0.3s ease;
+	}
+</style>

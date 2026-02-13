@@ -224,7 +224,7 @@ describe('Accessibility Tests', () => {
       expect(authorName).toHaveTextContent('Jean Dupont');
     });
 
-    it('maintains focus after expand/collapse actions', () => {
+    it('maintains focus after expand/collapse actions', async () => {
       const longReview = {
         ...mockReview,
         text: 'Lorem ipsum '.repeat(50)
@@ -239,7 +239,9 @@ describe('Accessibility Tests', () => {
       expandButton.click();
       
       // After expansion, check that the button text changed (it should now say "Réduire")
-      expect(screen.getByText('Réduire')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /réduire/i })).toBeInTheDocument();
+      });
     });
   });
 

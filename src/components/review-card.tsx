@@ -29,10 +29,13 @@ const ReviewCard = memo(({
   
   // Use controlled state if provided, otherwise use internal state
   const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded;
-  const handleToggleExpand = useCallback(
-    onToggleExpand || (() => setInternalExpanded(!internalExpanded)), 
-    [onToggleExpand, internalExpanded]
-  );
+  const handleToggleExpand = useCallback(() => {
+    if (onToggleExpand) {
+      onToggleExpand();
+    } else {
+      setInternalExpanded(prev => !prev);
+    }
+  }, [onToggleExpand]);
   
   // Text truncation logic
   const maxLength = 150;

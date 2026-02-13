@@ -52,7 +52,8 @@ describe('Performance Optimizations Validation', () => {
 
       render(<ReviewCard review={mockReview} />);
       
-      const card = screen.getByText('Test User').closest('div');
+      // The card itself (outermost div) should have transition classes
+      const card = screen.getByText('Test User').closest('.bg-white');
       expect(card?.className).toContain('transition-all');
       expect(card?.className).toContain('duration-300');
     });
@@ -78,7 +79,7 @@ describe('Performance Optimizations Validation', () => {
 
       render(<ReviewCard review={mockReview} />);
       
-      const readMoreButton = screen.getByText('Lire la suite');
+      const readMoreButton = screen.getByRole('button', { name: /lire la suite/i });
       expect(readMoreButton.className).toContain('touch-manipulation');
       expect(readMoreButton.style.WebkitTapHighlightColor).toBe('transparent');
     });
@@ -87,7 +88,7 @@ describe('Performance Optimizations Validation', () => {
       const mockReview: Review = {
         author_name: 'Test User',
         rating: 5,
-        text: 'This is a very long review text that should be truncated and show a read more button for better mobile experience.',
+        text: 'This is a very long review text that should be truncated and show a read more button for better mobile experience and performance optimization testing purposes.',
         relative_time_description: '1 week ago',
         time: Date.now() / 1000,
         language: 'en'
@@ -149,7 +150,7 @@ describe('Performance Optimizations Validation', () => {
       const mockReview: Review = {
         author_name: 'Test User',
         rating: 5,
-        text: 'Long review text that needs truncation for performance reasons but should maintain accessibility features.',
+        text: 'Long review text that needs truncation for performance reasons but should maintain accessibility features and provide a good user experience across all devices and screen sizes.',
         relative_time_description: '1 week ago',
         time: Date.now() / 1000,
         language: 'en'
@@ -157,7 +158,7 @@ describe('Performance Optimizations Validation', () => {
 
       render(<ReviewCard review={mockReview} />);
       
-      const button = screen.getByText('Lire la suite');
+      const button = screen.getByRole('button', { name: /lire la suite/i });
       expect(button).toHaveAttribute('aria-expanded', 'false');
       expect(button).toHaveAttribute('aria-label', 'Lire la suite');
     });
