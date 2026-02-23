@@ -6,15 +6,17 @@ export interface ButtonProps {
   text: string;
   type?: "submit" | "button";
   href?: string;
+  disabled?: boolean;
 }
 
 const Button = (props: ButtonProps) => {
-  const { variant = "primary", text = "Default Text", type = "button", href } = props;
+  const { variant = "primary", text = "Default Text", type = "button", href, disabled = false } = props;
 
   const defaultStyles =
     "rounded-[18px] flex items-center justify-center gap-[9px] w-fit text-white text-base lg:text-lg font-semibold font-['Jost'] leading-snug tracking-tight px-10 py-5 md:px-[54px] md:py-[26px]";
   const bgClass = variant === "primary" ? "bg-primary-200" : "bg-primary-100";
-  const className = `${defaultStyles} ${bgClass}`;
+  const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
+  const className = `${defaultStyles} ${bgClass} ${disabledClass}`;
 
   // Capitalize only the first letter of the text
   const capitalizedText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
@@ -31,7 +33,7 @@ const Button = (props: ButtonProps) => {
 
   // Otherwise, render as a button
   return (
-    <button className={className} type={type}>
+    <button className={className} type={type} disabled={disabled}>
       {capitalizedText}
       {variant === "primary" ? <ArrowSec /> : <ArrowPri />}
     </button>
