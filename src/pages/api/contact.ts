@@ -40,7 +40,7 @@ setInterval(() => {
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const data = await request.json();
-    const { nom, email, sujet, telephone, message, website, formLoadTime } = data;
+    const { nom, email, sujet, telephone, message, telephone2, formLoadTime } = data;
 
     // Get client IP for rate limiting
     const ip = clientAddress || request.headers.get('x-forwarded-for') || 'unknown';
@@ -58,7 +58,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
 
     // Honeypot check
-    if (website) {
+    if (telephone2) {
       // Bot detected - return success but don't send email
       console.log('Bot detected via honeypot field');
       return new Response(

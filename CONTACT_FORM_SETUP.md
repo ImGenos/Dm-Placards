@@ -80,7 +80,7 @@ Puis allez sur `http://localhost:4321/contact` et testez le formulaire.
 2. Importez le projet dans Vercel
 3. **Important:** Ajoutez la variable d'environnement dans Vercel:
    - Allez dans Settings → Environment Variables
-   - Ajoutez: `RESEND_API_KEY` = `re_hHYVsLd3_oZeVVChAyRCRvfG7kudxzEzH`
+   - Ajoutez: `RESEND_API_KEY` = `your_resend_api_key_here`
 4. Déployez!
 
 ## Limites du Plan Gratuit Resend

@@ -8,7 +8,7 @@ const ContactForm = () => {
     sujet: "",
     telephone: "",
     message: "",
-    website: "", // Honeypot field
+    telephone2: "", // Honeypot field
   });
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
@@ -26,7 +26,7 @@ const ContactForm = () => {
     e.preventDefault();
     
     // Check honeypot field
-    if (formData.website) {
+    if (formData.telephone2) {
       // Bot detected - silently fail
       setStatus({ type: "success", message: "Message envoyé avec succès!" });
       return;
@@ -55,7 +55,7 @@ const ContactForm = () => {
 
       if (result.success) {
         setStatus({ type: "success", message: result.message });
-        setFormData({ nom: "", email: "", sujet: "", telephone: "", message: "", website: "" });
+        setFormData({ nom: "", email: "", sujet: "", telephone: "", message: "", telephone2: "" });
       } else {
         setStatus({ type: "error", message: result.message });
       }
@@ -133,12 +133,12 @@ const ContactForm = () => {
         ></textarea>
 
         {/* Honeypot field - hidden from users, visible to bots */}
-        <label htmlFor="website" className="hidden" aria-hidden="true">
+        <label htmlFor="telephone2" className="hidden" aria-hidden="true">
           <input
             type="text"
-            name="website"
-            id="website"
-            value={formData.website}
+            name="telephone2"
+            id="telephone2"
+            value={formData.telephone2}
             onChange={handleChange}
             tabIndex={-1}
             autoComplete="off"
