@@ -8,11 +8,13 @@ const ContactForm = () => {
     sujet: "",
     telephone: "",
     message: "",
+    website: "", // Honeypot field
   });
   const [status, setStatus] = useState<{
     type: "idle" | "loading" | "success" | "error";
     message: string;
   }>({ type: "idle", message: "" });
+  const [formLoadTime] = useState(Date.now());
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,20 +24,38 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check honeypot field
+    if (formData.website) {
+      // Bot detected - silently fail
+      setStatus({ type: "success", message: "Message envoyé avec succès!" });
+      return;
+    }
+
+    // Time-based check (minimum 3 seconds to fill form)
+    const timeTaken = Date.now() - formLoadTime;
+    if (timeTaken < 3100) {
+      setStatus({ type: "error", message: "Veuillez prendre le temps de remplir le formulaire." });
+      return;
+    }
+
     setStatus({ type: "loading", message: "Envoi en cours..." });
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          formLoadTime,
+        }),
       });
 
       const result = await response.json();
 
       if (result.success) {
         setStatus({ type: "success", message: result.message });
-        setFormData({ nom: "", email: "", sujet: "", telephone: "", message: "" });
+        setFormData({ nom: "", email: "", sujet: "", telephone: "", message: "", website: "" });
       } else {
         setStatus({ type: "error", message: result.message });
       }
@@ -111,6 +131,20 @@ const ContactForm = () => {
           placeholder="Bonjour, Je souhaiterais réaliser...
 (Pensez à préciser les dimensions pour que notre devis soit le plus précis possible et joindre une photo)"
         ></textarea>
+
+        {/* Honeypot field - hidden from users, visible to bots */}
+        <label htmlFor="website" className="hidden" aria-hidden="true">
+          <input
+            type="text"
+            name="website"
+            id="website"
+            value={formData.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute left-[-9999px]"
+          />
+        </label>
 
         {status.type !== "idle" && (
           <div
