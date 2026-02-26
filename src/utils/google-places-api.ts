@@ -8,12 +8,12 @@ import {
   retryWithBackoff, 
   retryWithBackoffAndJitter,
   logGooglePlacesError,
-  GooglePlacesError,
   withTimeout,
   validateNetworkConnectivity,
   isOnline,
   waitForOnline
 } from './error-handling';
+import type { GooglePlacesError } from './error-handling';
 import { getGooglePlacesConfig, validateGooglePlacesConfig } from './config';
 
 export interface Review {
