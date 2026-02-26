@@ -94,3 +94,10 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+.vercel
+.env*.local
+YOAST_MIGRATION_COMPARISON.md
+SEO_SUMMARY.md
+SEO_SETUP.md
+SEO_QUICK_START.md
+SEO_IMPLEMENTATION_GUIDE.md

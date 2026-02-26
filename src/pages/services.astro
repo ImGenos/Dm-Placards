@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/main-layout.astro'
+import { getPageTitle, getPageDescription, getPageKeywords } from '../utils/seo-config'
 import One from "../icons/one.tsx"
 import Two from "../icons/two.tsx"
 import Three from "../icons/three.tsx"
@@ -41,7 +42,7 @@ const howWeWorkDetails = [
   {
     imgIcon: ServiceIconOne,
     numIcon: One,
-    img: '/service1.png',
+    img: '/service1.jpg',
     title: 'Concept & Détails',
     info:'C\'est un fait établi depuis longtemps qu\'un lecteur sera distrait. Lorem Ipsum est simplement un texte factice de l\'industrie de l\'imprimerie et de la composition.'
 
@@ -74,7 +75,11 @@ const howWeWorkDetails = [
 ---
 
 
-<MainLayout title = 'DM Placards - Services'>
+<MainLayout 
+  title={getPageTitle('services')}
+  description={getPageDescription('services')}
+  keywords={getPageKeywords('services')}
+>
 
   <!-- Banner Section -->
 

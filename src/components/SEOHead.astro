@@ -1,0 +1,87 @@
+---
+// SEO Head Component - Generates all meta tags, Open Graph, Twitter Card, and Schema.org
+import { 
+  seoConfig, 
+  getCanonicalURL, 
+  getOrganizationSchema 
+} from '../utils/seo-config';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  canonical?: string;
+  schema?: object;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  image = seoConfig.openGraph.images.default,
+  type = 'website',
+  noindex = false,
+  canonical,
+  schema
+} = Astro.props;
+
+const canonicalURL = canonical || getCanonicalURL(Astro.url.pathname);
+const fullImageURL = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
+
+// Generate organization schema
+const organizationSchema = getOrganizationSchema();
+
+// Combine schemas if additional schema provided
+const combinedSchema = schema 
+  ? [organizationSchema, schema]
+  : organizationSchema;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Robots -->
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow" />
+)}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImageURL} />
+<meta property="og:site_name" content={seoConfig.openGraph.siteName} />
+<meta property="og:locale" content={seoConfig.openGraph.locale} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content={seoConfig.twitter.cardType} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImageURL} />
+
+<!-- Verification -->
+{seoConfig.verification.google && (
+  <meta name="google-site-verification" content={seoConfig.verification.google} />
+)}
+{seoConfig.verification.msvalidate && (
+  <meta name="msvalidate.01" content={seoConfig.verification.msvalidate} />
+)}
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(combinedSchema)} />
+
+<!-- Additional SEO -->
+<meta name="author" content={seoConfig.company.name} />
+<meta name="language" content="French" />
+<meta name="revisit-after" content="7 days" />
