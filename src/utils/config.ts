@@ -13,12 +13,8 @@ export interface GooglePlacesConfig {
  */
 export function getGooglePlacesConfig(): GooglePlacesConfig {
   return {
-    apiKey: import.meta.env.PUBLIC_GOOGLE_PLACES_API_KEY || 
-            import.meta.env.GOOGLE_PLACES_API_KEY || 
-            null,
-    placeId: import.meta.env.PUBLIC_GOOGLE_PLACE_ID || 
-             import.meta.env.GOOGLE_PLACE_ID || 
-             null
+    apiKey: null, // API key is server-side only, accessed via /api/reviews
+    placeId: import.meta.env.PUBLIC_GOOGLE_PLACE_ID || null
   };
 }
 
@@ -28,11 +24,6 @@ export function getGooglePlacesConfig(): GooglePlacesConfig {
  */
 export function validateGooglePlacesConfig(): boolean {
   const config = getGooglePlacesConfig();
-  
-  if (!config.apiKey) {
-    console.warn('Google Places API key not configured. Set PUBLIC_GOOGLE_PLACES_API_KEY in your environment.');
-    return false;
-  }
   
   if (!config.placeId) {
     console.warn('Google Place ID not configured. Set PUBLIC_GOOGLE_PLACE_ID in your environment.');

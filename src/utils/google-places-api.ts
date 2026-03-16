@@ -67,7 +67,7 @@ class GooglePlacesService {
   private readonly CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
   private readonly CACHE_KEY_PREFIX = 'google_reviews_';
   private readonly CACHE_VERSION = '1.0.0'; // For cache invalidation
-  private readonly API_BASE_URL = 'https://maps.googleapis.com/maps/api/place/details/json';
+  private readonly API_BASE_URL = '/api/reviews';
   private readonly RATE_LIMIT_DELAY = 100; // Minimum delay between API calls (ms)
   private readonly MAX_CACHE_SIZE = 10; // Maximum number of cached place details
   
@@ -177,7 +177,7 @@ class GooglePlacesService {
       metrics.apiCallMade = true;
       const response = await this.makeRateLimitedApiCall(
         () => retryWithBackoffAndJitter(
-          () => this.fetchPlaceDetails(placeId, config.apiKey!),
+          () => this.fetchPlaceDetails(placeId, ''),
           3, // max retries
           1000, // base delay
           30000 // max delay
@@ -365,19 +365,14 @@ class GooglePlacesService {
    * @param apiKey - Google Places API key
    * @returns Promise<GooglePlacesApiResponse>
    */
-  private async fetchPlaceDetails(placeId: string, apiKey: string): Promise<GooglePlacesApiResponse> {
-    const fields = 'name,rating,user_ratings_total,reviews,place_id';
-    const url = `${this.API_BASE_URL}?place_id=${encodeURIComponent(placeId)}&fields=${fields}&key=${apiKey}&language=fr`;
+  private async fetchPlaceDetails(placeId: string, _apiKey: string): Promise<GooglePlacesApiResponse> {
+    const url = `${this.API_BASE_URL}?placeId=${encodeURIComponent(placeId)}`;
 
     try {
       // Add timeout to prevent hanging requests
       const response = await withTimeout(
         fetch(url, {
-          headers: {
-            'Accept': 'application/json',
-            'User-Agent': 'Mozilla/5.0 (compatible; GoogleReviewsWidget/1.0)'
-          },
-          // Add signal for request cancellation if needed
+          headers: { 'Accept': 'application/json' },
           signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined
         }),
         15000 // 15 second timeout
